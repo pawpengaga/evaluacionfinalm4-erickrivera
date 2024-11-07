@@ -13,18 +13,37 @@ public class AlumnoServicio implements IAlumno {
 
   // METODOS PROPIOS DEL CRUD DEL ALUMNO
   @Override
-  public void crear(Alumno objeto) {
-
+  public void crear(Alumno alumno) {
+    if (listaAlumnos.containsKey(alumno.getRut())) {
+      System.out.println("El alumno ya existe...");
+    } else {
+      listaAlumnos.put(alumno.getRut(), alumno);
+      System.out.println("Alumno registrado exitosamente el sistema!");
+    }
   }
 
   @Override
-  public Alumno leer(String id) {
-    return null;
+  public Alumno leer(String rut) {
+
+    Alumno alumnoBuscado = listaAlumnos.get(rut);
+
+    if (alumnoBuscado == null) {
+      System.out.println("El alumno que busca no existe...");
+      return null;
+    }
+    return alumnoBuscado;
   }
 
   @Override
-  public void actualizar(Alumno objeto) {
+  public void actualizar(Alumno alumno) {
 
+    Alumno nuevoAlumno = listaAlumnos.get(alumno.getRut());
+
+    if (nuevoAlumno == null) {
+      System.out.println("El alumno que busca para editar no existe...");
+    } else {
+      listaAlumnos.put(alumno.getRut(), alumno);
+    }
   }
 
   // @Override
@@ -34,7 +53,7 @@ public class AlumnoServicio implements IAlumno {
 
   @Override
   public Map<String, Alumno> listar() {
-    return null;
+    return listaAlumnos;
   }
 
   // METODOS DE UTILIDADES COOPERATIVAS
@@ -42,11 +61,36 @@ public class AlumnoServicio implements IAlumno {
   @Override
   public void agregarMateria(String rut, Materia currenMateria) {
 
+    Alumno alumnoBuscado = listaAlumnos.get(rut);
+
+    if (listaAlumnos.containsKey(alumnoBuscado.getRut())){
+      boolean materiaBuscada = alumnoBuscado.getMaterias().stream().anyMatch(materia -> materia.getNombre().equals(currenMateria.getNombre()));
+    
+      if (!(materiaBuscada)) {
+        alumnoBuscado.getMaterias().add(currenMateria);
+      } else {
+        System.out.println("El alumno ya tiene la materia asignada");
+      }
+    } else {
+      System.out.println("El alumno que busca no existe...");
+    }
+
+    listaAlumnos.put(rut, alumnoBuscado);
+
   }
 
   @Override
   public List<Materia> materiasPorAlumnos(String rut) {
-    return null;
+    
+    Alumno alumnoBuscado = listaAlumnos.get(rut);
+
+    if (alumnoBuscado == null) {
+      System.out.println("El alumno que busca no existe...");
+      return null;
+    }
+
+    return alumnoBuscado.getMaterias();
+
   }
 
 }
