@@ -7,7 +7,6 @@ public class Materia {
   private MateriaEnum nombre;
   private List<Float> notas;
 
-
   public Materia() {
   }
 
