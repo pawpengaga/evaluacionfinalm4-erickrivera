@@ -21,11 +21,14 @@ public class ArchivoServicio {
         Alumno alumno = alumnoEnt.getValue();
         if (alumno.getMaterias().size() > 0){
           for(Materia materia : alumno.getMaterias()){
+
+            String notasFormateadas = formatearNotas(materia.getNotas());
+
             writer.append(cont + ", ")
             .append(alumno.getRut() + ", ")
             .append(alumno.getNombre() + " " + alumno.getApellido() + ", ")
             .append(materia.getNombre() + ", ")
-            .append(materia.getNotas() + ", ")
+            .append(notasFormateadas + ", ")
             .append(calcularPromedioDos(materia.getNotas()) + "\n");
             cont++;
           }
@@ -65,6 +68,11 @@ public class ArchivoServicio {
       return promedio;
     }
     return 0.0F;
+  }
+
+  private String formatearNotas(List<Float> notas){
+    String cadena = String.valueOf(notas).replace(",", " -");
+    return cadena;
   }
 
 }
