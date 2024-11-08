@@ -8,6 +8,9 @@ import interfaces.IAlumno;
 import models.Alumno;
 import models.Materia;
 
+/**
+ * Implementación del CRUD para Alumnos. Adicionalmente gestiona la relación de Alumno con otras clases según sea necesario.
+ */
 public class AlumnoServicio implements IAlumno {
 
   Map<String, Alumno> listaAlumnos = new HashMap<>();

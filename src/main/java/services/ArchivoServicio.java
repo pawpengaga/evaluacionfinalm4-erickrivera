@@ -10,6 +10,12 @@ import models.Materia;
 
 public class ArchivoServicio {
 
+  /**
+   * Exporta un documento CSV con un informe detallado de cada alumno, sus notas y su promedio por materia.
+   * @param alumnoServicio Recibe una clase completa de servicio para tener acceso a todos los datos y hacer completo el documento
+   * @param ruta La ruta debe ser un directorio EXISTENTE + el nombre.CSV. Ej: "archivos/notas.csv"
+   * @throws GenerarArchivoException Autodescriptivo.
+   */
   public void exportarDatos(AlumnoServicio alumnoServicio, String ruta) throws GenerarArchivoException {
 
     try(FileWriter writer = new FileWriter(ruta)){

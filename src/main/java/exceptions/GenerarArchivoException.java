@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Levanta una excepción ante problemas con la generación de archivos por x razón.
+ */
 public class GenerarArchivoException extends Exception {
   /**
 	 * 
