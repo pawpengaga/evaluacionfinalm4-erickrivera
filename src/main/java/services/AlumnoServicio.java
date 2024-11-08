@@ -101,4 +101,27 @@ public class AlumnoServicio implements IAlumno {
 
   }
 
+  public float promedioPorAlumno(String rut, int materia){
+
+    Alumno alumnoBuscado = listaAlumnos.get(rut);
+    
+    if (alumnoBuscado != null) {
+      Materia materiaBuscada = alumnoBuscado.getMaterias().get(materia - 1);
+      float sum = 0.0F;
+  
+      for (float nota : materiaBuscada.getNotas()) {
+        sum += nota;
+      }
+  
+      float promedio = sum / materiaBuscada.getNotas().size();
+  
+      return promedio;
+
+    }
+
+    System.out.println("El alumno que busca no existe...");
+    return 0.0F;
+
+  }
+
 }

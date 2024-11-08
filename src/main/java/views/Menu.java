@@ -65,6 +65,7 @@ public class Menu extends MenuTemplate {
     System.out.println();
 
     EscuelaUtil.listarServicios(alumnoServicio.listar());
+
   }
 
   @Override
@@ -90,6 +91,9 @@ public class Menu extends MenuTemplate {
     materiaSeleccionada.setNota(notaInput);
     System.out.println("Nota agregada!");
     EscuelaUtil.listarIterables(alumnoBuscado.getMaterias().toArray());
+
+    System.out.println("***************************************");
+    System.out.println("El promedio hasta ahora es: " + alumnoServicio.promedioPorAlumno(rutInput, opcionMateria));
   }
 
   @Override
