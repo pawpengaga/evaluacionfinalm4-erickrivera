@@ -15,7 +15,7 @@ public class ArchivoServicio {
     try(FileWriter writer = new FileWriter(ruta)){
 
       writer.append("ID, RUT, Nombre, Materia, Notas, Promedio\n");
-      int cont = 0;
+      int cont = 1;
       for(Map.Entry<String, Alumno> alumnoEnt : alumnoServicio.listar().entrySet()){
         
         Alumno alumno = alumnoEnt.getValue();
@@ -27,6 +27,7 @@ public class ArchivoServicio {
             .append(materia.getNombre() + ", ")
             .append(materia.getNotas() + ", ")
             .append(calcularPromedioDos(materia.getNotas()) + "\n");
+            cont++;
           }
         } else {
           writer.append(cont + ", ")
@@ -35,6 +36,7 @@ public class ArchivoServicio {
           .append("NO PRESENTA" + ", ")
           .append("NO PRESENTA" + ", ")
           .append("NO PRESENTA");
+          cont++;
         }
         
       }

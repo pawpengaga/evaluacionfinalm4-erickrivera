@@ -64,8 +64,6 @@ public class AlumnoServicio implements IAlumno {
 
     Alumno alumnoBuscado = listaAlumnos.get(rut);
 
-
-
     if (alumnoBuscado != null) {
       if (listaAlumnos.containsKey(alumnoBuscado.getRut())){
         boolean materiaBuscada = alumnoBuscado.getMaterias().stream().anyMatch(materia -> materia.getNombre().equals(currenMateria.getNombre()));
