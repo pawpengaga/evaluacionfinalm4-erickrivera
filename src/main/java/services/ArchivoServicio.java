@@ -47,6 +47,10 @@ public class ArchivoServicio {
 
   }
 
+  public float getPromedioServicio(List<Float> notas){
+    return calcularPromedioDos(notas);
+  }
+
   // Aqui iba un metodo para calcular promedios...
 
   private float calcularPromedioDos(List<Float> notas){
