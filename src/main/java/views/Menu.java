@@ -1,9 +1,11 @@
 package views;
 
+import exceptions.GenerarArchivoException;
 import models.Alumno;
 import models.Materia;
 import models.MateriaEnum;
 import services.AlumnoServicio;
+import services.ArchivoServicio;
 import utilitary.EscuelaUtil;
 
 public class Menu extends MenuTemplate {
@@ -11,12 +13,14 @@ public class Menu extends MenuTemplate {
   // SETS DE DATOS
 
   private AlumnoServicio alumnoServicio = new AlumnoServicio();
+  private ArchivoServicio archivoServicio = new ArchivoServicio();
 
   // METODOS GENERALES DEL MENU
 
   @Override
-  public void exportarDatos() {
+  public void exportarDatos() throws GenerarArchivoException {
     System.out.println("Exportando datos...");
+    archivoServicio.exportarDatos(alumnoServicio, "evaluacionfinalm4/notas.csv");
   }
 
   @Override
@@ -111,7 +115,7 @@ public class Menu extends MenuTemplate {
 
   // MENU EN SI
   
-  public static void main(String[] args) {
+  public static void main(String[] args) throws GenerarArchivoException {
 
     Menu colegioLatino = new Menu();
     colegioLatino.iniciarMenu();

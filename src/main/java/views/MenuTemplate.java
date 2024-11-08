@@ -2,19 +2,21 @@ package views;
 
 import java.util.Scanner;
 
+import exceptions.GenerarArchivoException;
+
 public abstract class MenuTemplate {
 
   public static Scanner myscan = new Scanner(System.in);
   public static boolean salir = false;
 
-  public abstract void exportarDatos();
+  public abstract void exportarDatos() throws GenerarArchivoException;
   public abstract void crearAlumno();
   public abstract void agregarMateria();
   public abstract void agregarNotaPasoUno();
   public abstract void listaAlumnos();
   public abstract void terminarPrograma();
   
-  public void iniciarMenu(){
+  public void iniciarMenu() throws GenerarArchivoException{
 
     System.out.println("*** BIENVENDIDO AL MENU DE LA ESCUELA ***");
     System.out.println("--------------------------------------------");
@@ -39,7 +41,7 @@ public abstract class MenuTemplate {
         case 3 -> agregarMateria();
         case 4 -> agregarNotaPasoUno();
         case 5 -> terminarPrograma();
-        case 6 -> terminarPrograma();
+        case 6 -> exportarDatos();
       }
     }
 
