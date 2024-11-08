@@ -1,5 +1,6 @@
 package services;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import models.Materia;
 
 public class AlumnoServicio implements IAlumno {
 
-  Map<String, Alumno> listaAlumnos;
+  Map<String, Alumno> listaAlumnos = new HashMap<>();
 
   // METODOS PROPIOS DEL CRUD DEL ALUMNO
   @Override
@@ -63,19 +64,26 @@ public class AlumnoServicio implements IAlumno {
 
     Alumno alumnoBuscado = listaAlumnos.get(rut);
 
-    if (listaAlumnos.containsKey(alumnoBuscado.getRut())){
-      boolean materiaBuscada = alumnoBuscado.getMaterias().stream().anyMatch(materia -> materia.getNombre().equals(currenMateria.getNombre()));
-    
-      if (!(materiaBuscada)) {
-        alumnoBuscado.getMaterias().add(currenMateria);
+
+
+    if (alumnoBuscado != null) {
+      if (listaAlumnos.containsKey(alumnoBuscado.getRut())){
+        boolean materiaBuscada = alumnoBuscado.getMaterias().stream().anyMatch(materia -> materia.getNombre().equals(currenMateria.getNombre()));
+      
+        if (!(materiaBuscada)) {
+          System.out.println("Agregando materia...");
+          alumnoBuscado.getMaterias().add(currenMateria);
+        } else {
+          System.out.println("El alumno ya tiene la materia asignada");
+        }
       } else {
-        System.out.println("El alumno ya tiene la materia asignada");
+        System.out.println("El alumno que busca no existe...");
       }
+  
+      listaAlumnos.put(rut, alumnoBuscado);
     } else {
       System.out.println("El alumno que busca no existe...");
     }
-
-    listaAlumnos.put(rut, alumnoBuscado);
 
   }
 

@@ -31,14 +31,17 @@ public class Materia {
   public void setNotas(List<Float> notas) {
     this.notas = notas;
   }
+
+  public void setNota(float input){
+    this.getNotas().add(input);
+  }
   
 
   @Override
   public String toString() {
-    return "{" +
-      " Nombre: '" + getNombre() + "'" +
+    return "'" + getNombre() + "'" +
       ", Notas: '" + getNotas() + "'" +
-      " }";
+      "";
   }
 
 
